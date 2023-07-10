@@ -1,0 +1,28 @@
+ <!DOCTYPE html>
+<html>
+<head>
+  <title>Box Example</title>
+  <style>
+    .box {
+      width: 300px;
+      height: 300px;
+      background-color: red;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="box" id="myBox"></div>
+
+  <script>
+    const box = document.getElementById('myBox');
+
+    box.addEventListener('click', function() {
+      box.style.backgroundColor = 'yellow';
+      box.style.width = '600px';
+      box.style.height = '600px';
+    });
+  </script>
+</body>
+</html>
