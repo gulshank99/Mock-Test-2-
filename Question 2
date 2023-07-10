@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Input Box Example</title>
+  <style>
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 50px;
+    }
+
+    .input-box {
+      display: flex;
+    }
+
+    .input-box input[type="text"] {
+      margin-right: 10px;
+    }
+
+    .input-box input[type="submit"] {
+      cursor: pointer;
+    }
+
+    .output {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="input-box">
+      <input type="text" id="inputText" placeholder="Enter text">
+      <input type="submit" value="Submit" onclick="addText()">
+    </div>
+    <div class="output" id="outputDiv"></div>
+  </div>
+
+  <script>
+    function addText() {
+      var input = document.getElementById('inputText');
+      var output = document.getElementById('outputDiv');
+
+      if (input.value !== '') {
+        var newParagraph = document.createElement('p');
+        newParagraph.textContent = input.value;
+        output.appendChild(newParagraph);
+        input.value = '';
+      }
+    }
+  </script>
+</body>
+</html>
