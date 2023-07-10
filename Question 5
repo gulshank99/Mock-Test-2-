@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Form Validation Example</title>
+  <style>
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <h1>Registration Form</h1>
+  <form id="registrationForm" onsubmit="validateForm(event)">
+    <div>
+      <label for="name">Name:</label>
+      <input type="text" id="name" required>
+      <span id="nameError" class="error"></span>
+    </div>
+    <div>
+      <label for="email">Email:</label>
+      <input type="email" id="email" required>
+      <span id="emailError" class="error"></span>
+    </div>
+    <div>
+      <label for="phone">Phone Number:</label>
+      <input type="tel" id="phone" required>
+      <span id="phoneError" class="error"></span>
+    </div>
+    <div>
+      <label for="password">Password:</label>
+      <input type="password" id="password" required>
+      <span id="passwordError" class="error"></span>
+    </div>
+    <div>
+      <label for="age">Age:</label>
+      <input type="number" id="age" required>
+      <span id="ageError" class="error"></span>
+    </div>
+    <div>
+      <label for="gender">Gender:</label>
+      <select id="gender" required>
+        <option value="">Select</option>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+      </select>
+      <span id="genderError" class="error"></span>
+    </div>
+    <div>
+      <label for="dob">Date of Birth:</label>
+      <input type="date" id="dob" required>
+      <span id="dobError" class="error"></span>
+    </div>
+    <div>
+      <label for="color">Favorite Color:</label>
+      <input type="color" id="color" required>
+      <span id="colorError" class="error"></span>
+    </div>
+    <div>
+      <input type="submit" value="Submit">
+    </div>
+  </form>
+
+  <script>
+    function validateForm(event) {
+      event.preventDefault();
+
+      // Clear previous error messages
+      clearErrorMessages();
+
+      // Get form fields
+      var nameInput = document.getElementById('name');
+      var emailInput = document.getElementById('email');
+      var phoneInput = document.getElementById('phone');
+      var passwordInput = document.getElementById('password');
+      var ageInput = document.getElementById('age');
+      var genderInput = document.getElementById('gender');
+      var dobInput = document.getElementById('dob');
+      var colorInput = document.getElementById('color');
+
+      // Validate each field
+      validateName(nameInput);
+      validateEmail(emailInput);
+      validatePhone(phoneInput);
+      validatePassword(passwordInput);
+      validateAge(ageInput);
+      validateGender(genderInput);
+      validateDOB(dobInput);
+      validateColor(colorInput);
+    }
+
+    function clearErrorMessages() {
+      var errorMessages = document.getElementsByClassName('error');
+      for (var i = 0; i < errorMessages.length; i++) {
+        errorMessages[i].textContent = '';
+      }
+    }
+
+    function validateName(nameInput) {
+      var nameError = document.getElementById('nameError');
+      if (nameInput.value.trim() === '') {
+        nameError.textContent = 'Name is required';
+      }
+    }
+
+    function validateEmail(emailInput) {
+      var emailError = document.getElementById('emailError');
+      var emailPattern = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
+      if (!emailPattern.test(emailInput.value)) {
+        emailError.textContent = 'Invalid email address';
+      }
+    }
+
+    function validatePhone(phoneInput) {
+      var phoneError = document.getElementById('phoneError');
+      var phonePattern = /^\d{10}$/;
+      if (!phonePattern.test(phoneInput.value)) {
+        phoneError.textContent = 'Invalid phone number';
+      }
+    }
+
+    function validatePassword(passwordInput) {
+      var passwordError = document.getElementById('passwordError');
+      if (passwordInput.value.length < 6) {
+        passwordError.textContent = 'Password must be at least 6 characters';
+      }
+    }
+
+    function validateAge(ageInput) {
+      var ageError = document.getElementById('ageError');
+      if (isNaN(ageInput.value) || ageInput.value < 1) {
+        ageError.textContent = 'Invalid age';
+      }
+    }
+
+    function validateGender(genderInput) {
+      var genderError = document.getElementById('genderError');
+      if (genderInput.value === '') {
+        genderError.textContent = 'Gender is required';
+      }
+    }
+
+    function validateDOB(dobInput) {
+      var dobError = document.getElementById('dobError');
+      var dob = new Date(dobInput.value);
+      var today = new Date();
+      if (dob >= today) {
+        dobError.textContent = 'Invalid date of birth';
+      }
+    }
+
+    function validateColor(colorInput) {
+      var colorError = document.getElementById('colorError');
+      if (colorInput.value === '#000000') {
+        colorError.textContent = 'Please select a color';
+      }
+    }
+  </script>
+</body>
+</html>
